@@ -1,26 +1,30 @@
 //interceptor for request to add correct headers
 //uses axios to send network requests
 import axios from "axios";
-import { ACCESS_TOKEN } from "./constants"; 
+import { ACCESS_TOKEN } from "./constants";
 
 //
+
 const api = axios.create({
-    //import anything stored in an enviroment variable
-    baseURL: import.meta.env.VITE_API_URL
-})
+  //import anything stored in an enviroment variable
+  baseURL: import.meta.env.VITE_API_URL,
+});
 
 //checks local storage for access token
 api.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem(ACCESS_TOKEN);
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`
-        }
-        return config
-    },
-    (error) => {
-        return Promise.reject(error)
+  (config) => {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
-)
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default api;
+
+//back to frontend setup
+//api vite url not being read
