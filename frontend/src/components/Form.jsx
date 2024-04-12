@@ -15,8 +15,6 @@ function Form(props) {
 
   const handleSubmit = async (e) => {
     setLoading(true);
-    e.preventDefault();
-    //console.log(`${props.route}`);
 
     try {
       //send user/pass to api
@@ -36,6 +34,8 @@ function Form(props) {
     } finally {
       setLoading(false);
     }
+
+    e.preventDefault();
   };
 
   return (
