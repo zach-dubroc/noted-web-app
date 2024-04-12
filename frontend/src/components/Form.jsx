@@ -4,21 +4,24 @@ import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css";
 
-function Form({ route, method }) {
+function Form(props) {
+  console.log(props);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const name = method === "login" ? "Login" : "Register";
+  const name = props.method === "login" ? "Login" : "Register";
 
   const handleSubmit = async (e) => {
     setLoading(true);
+    e.preventDefault();
+    //console.log(`${props.route}`);
 
     try {
       //send user/pass to api
-      const res = await api.post(route, { username, password });
-      if (method === "login") {
+      const res = await api.post(props.route, { username, password });
+      if (props.method === "login") {
         //gets access token if logins succesful
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
@@ -33,8 +36,6 @@ function Form({ route, method }) {
     } finally {
       setLoading(false);
     }
-
-    e.preventDefault();
   };
 
   return (
@@ -52,7 +53,10 @@ function Form({ route, method }) {
         type="password"
         className="form-input"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => {
+          setPassword(e.target.value);
+          console.log(password);
+        }}
         placeholder="password"
       />
 
@@ -64,3 +68,5 @@ function Form({ route, method }) {
 }
 
 export default Form;
+
+//issue is here,

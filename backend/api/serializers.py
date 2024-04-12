@@ -10,6 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {"password": {"write_only": True}} #accepts password but doesn't return it
         #if serialized data is valid, will be passed and and we can create user
     def create(self, validated_data):
+        print(validated_data)
         user = User.objects.create_user(**validated_data)
         return user
 
