@@ -14,6 +14,7 @@ function Form({ route, method }) {
 
   const handleSubmit = async (e) => {
     setLoading(true);
+    e.preventDefault();
 
     try {
       //send user/pass to api
@@ -34,7 +35,6 @@ function Form({ route, method }) {
       setLoading(false);
     }
 
-    e.preventDefault();
   };
 
   return (
