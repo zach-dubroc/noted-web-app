@@ -5,7 +5,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css";
 
 function Form(props) {
-  console.log(props);
+  //console.log(props);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -15,6 +15,7 @@ function Form(props) {
 
   const handleSubmit = async (e) => {
     setLoading(true);
+    e.preventDefault();
 
     try {
       //send user/pass to api
@@ -34,8 +35,6 @@ function Form(props) {
     } finally {
       setLoading(false);
     }
-
-    e.preventDefault();
   };
 
   return (
@@ -55,7 +54,6 @@ function Form(props) {
         value={password}
         onChange={(e) => {
           setPassword(e.target.value);
-          console.log(password);
         }}
         placeholder="password"
       />
@@ -68,5 +66,3 @@ function Form(props) {
 }
 
 export default Form;
-
-//issue is here,

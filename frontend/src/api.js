@@ -25,6 +25,3 @@ api.interceptors.request.use(
 );
 
 export default api;
-
-//back to frontend setup
-//api vite url not being read
