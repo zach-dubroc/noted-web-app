@@ -2,6 +2,7 @@ import { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
+import LoadingIndicator from "./LoadingIndicator";
 import "../styles/Form.css";
 
 function Form(props) {
@@ -57,7 +58,7 @@ function Form(props) {
         }}
         placeholder="password"
       />
-
+      {loading && <LoadingIndicator />}
       <button className="form-button" type="submit">
         {name}
       </button>

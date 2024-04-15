@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../api";
+import Note from "../components/Note";
+import "../styles/Home.css";
 function Home() {
   const [notes, setNotes] = useState([]);
   const [content, setContent] = useState("");
@@ -25,7 +27,7 @@ function Home() {
 
   const deleteNote = (id) => {
     api
-      .delete(`/api/delete/${id}/`)
+      .delete(`/api/notes/delete/${id}/`)
       .then((res) => {
         if (res.status === 204) {
           alert("note deleted");
@@ -51,7 +53,10 @@ function Home() {
   return (
     <div>
       <div>
-        <h2>Notes</h2>
+        <h2>your notes:</h2>
+        {notes.map((note) => (
+          <Note note={note} onDelete={deleteNote} key={note.id} />
+        ))}
       </div>
 
       <h2>Create a Note</h2>
