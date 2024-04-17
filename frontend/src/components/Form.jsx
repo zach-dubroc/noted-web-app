@@ -6,7 +6,7 @@ import LoadingIndicator from "./LoadingIndicator";
 import "../styles/Form.css";
 
 function Form(props) {
-  //console.log(props);
+  console.log(props);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -21,6 +21,8 @@ function Form(props) {
     try {
       //send user/pass to api
       const res = await api.post(props.route, { username, password });
+      consoleLog(res.status);
+      console.log(props.route);
       if (props.method === "login") {
         //gets access token if logins succesful
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
@@ -29,6 +31,7 @@ function Form(props) {
         //to home page
       } else {
         //if register was method, send back to login to get tokens
+        console.log(res.status);
         navigate("/login");
       }
     } catch (error) {
