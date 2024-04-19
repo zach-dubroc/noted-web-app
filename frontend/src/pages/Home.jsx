@@ -57,7 +57,7 @@ function Home() {
         <button
           className="logout-button"
           onClick={() => {
-            <Navigate to="/logout" />;
+            navigate("/logout");
           }}
         >
           Logout
