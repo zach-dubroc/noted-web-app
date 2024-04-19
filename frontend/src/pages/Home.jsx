@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../api";
 import Note from "../components/Note";
 import "../styles/Home.css";
+import { Navigate } from "react-router-dom";
 function Home() {
   const [notes, setNotes] = useState([]);
   const [content, setContent] = useState("");
@@ -52,6 +53,16 @@ function Home() {
 
   return (
     <div>
+      <div>
+        <button
+          className="logout-button"
+          onClick={() => {
+            <Navigate to="/logout" />;
+          }}
+        >
+          Logout
+        </button>
+      </div>
       <div>
         <h2>your notes:</h2>
         {notes.map((note) => (
