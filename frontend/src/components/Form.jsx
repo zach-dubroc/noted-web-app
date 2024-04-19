@@ -9,9 +9,15 @@ function Form(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [reg, setReg] = useState(true);
 
   const navigate = useNavigate();
   const name = props.method === "login" ? "Login" : "Register";
+
+  const handleClick = (e) => {
+    navigate("/register");
+    setReg(false);
+  };
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -22,6 +28,7 @@ function Form(props) {
       const res = await api.post(props.route, { username, password });
 
       if (props.method === "login") {
+        setReg(true);
         //gets access token if logins succesful
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
@@ -63,6 +70,14 @@ function Form(props) {
       <button className="form-button" type="submit">
         {name}
       </button>
+
+      {props.method === "login" ? (
+        <button className="form-button" onClick={handleClick}>
+          Register
+        </button>
+      ) : (
+        ""
+      )}
     </form>
   );
 }
