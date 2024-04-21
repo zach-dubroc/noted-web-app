@@ -3,11 +3,12 @@ import api from "../api";
 import Note from "../components/Note";
 import "../styles/Home.css";
 import { useNavigate } from "react-router-dom";
+
 function Home() {
   const [notes, setNotes] = useState([]);
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
-
+  const username = "";
   const navigate = useNavigate();
   //useEffect runs on initial render
   //and on value change of 2nd argument(dependency)
@@ -22,7 +23,8 @@ function Home() {
       .then((res) => res.data)
       .then((data) => {
         setNotes(data);
-        console.log(data);
+        console.log(res);
+        username = res.username;
       })
       .catch((err) => err);
   };
@@ -32,7 +34,7 @@ function Home() {
       .delete(`/api/notes/delete/${id}/`)
       .then((res) => {
         if (res.status === 204) {
-          alert("note deleted");
+          //alert("note deleted");
         } else alert("failed to delete");
         getNotes();
       })
@@ -45,7 +47,7 @@ function Home() {
       .post("/api/notes/", { content, title })
       .then((res) => {
         if (res.status === 201) {
-          alert("note created");
+          //alert("note created");
         } else alert("failed");
         getNotes();
       })
@@ -65,7 +67,7 @@ function Home() {
         </button>
       </div>
       <div>
-        <h2>your notes:</h2>
+        `<h2>${username}'s' notes:</h2>`
         {notes.map((note) => (
           <Note note={note} onDelete={deleteNote} key={note.id} />
         ))}
