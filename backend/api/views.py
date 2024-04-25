@@ -4,6 +4,13 @@ from rest_framework import generics
 from .serializers import UserSerializer, NoteSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Note
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+
+
+
 # Create your views here.
 
 #lists all notes from user or creates new note
@@ -12,14 +19,18 @@ class NoteListCreate(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        user = self.request.user
-        return Note.objects.filter(author=user)#only shows notes from their author
+        user = self.request.user.id
+        return Note.objects.filter(author_id=user)#only shows notes from their author
     
     def perform_create(self, serializer):
         if serializer.is_valid():
-            serializer.save(author=self.request.user)#sets author of note 
+            author_id = self.request.user.id
+            author_instance = User.objects.get(id=author_id)
+            author_name = author_instance.username
+            serializer.save(author_id=author_instance, author_name=author_name)
         else:
             print(serializer.errors)
+
 
 class NoteDelete(generics.DestroyAPIView):
     serializer_class = NoteSerializer
@@ -27,7 +38,7 @@ class NoteDelete(generics.DestroyAPIView):
     
     def get_queryset(self):
         user = self.request.user
-        return Note.objects.filter(author=user)#only lets user delete their own notes
+        return Note.objects.filter(author_id=user)#only lets user delete their own notes
 
 #generic django new user page
 class CreateUserView(generics.CreateAPIView):
@@ -36,3 +47,12 @@ class CreateUserView(generics.CreateAPIView):
     permission_classes = [AllowAny] #allows anyone to create user
 
 
+    
+
+class GetUser(generics.RetrieveAPIView):
+        serializer_class = UserSerializer
+        permission_classes = [IsAuthenticated]
+
+        def get_object(self):
+            return self.request.user
+        

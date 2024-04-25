@@ -1,5 +1,5 @@
 /* Container for the whole page */
-div {
+* {
   font-family: Arial, sans-serif;
 }
 
@@ -16,10 +16,14 @@ div {
 /* Styles for individual notes - assuming your Note component has some container element */
 .note {
   background-color: #f9f9f9;
-  border-left: 5px solid #007bff;
-  margin: 10px 0;
+  border: 3px solid #999;
   padding: 10px 15px;
   border-radius: 5px;
+  width: auto;
+  max-height: 580px;
+  margin: 0 10%;
+  overflow: auto;
+  scrollbar-gutter: stable;
 }
 
 /* Styles for the form section */
@@ -54,7 +58,7 @@ form textarea {
 }
 
 form input[type="submit"] {
-  background-color: #007bff;
+  background-color: #404040;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -63,6 +67,96 @@ form input[type="submit"] {
   font-size: 16px;
 }
 
+form input[type="button"] {
+  background-color: #404040;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
 form input[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #606060;
+}
+form input[type="button"]:hover {
+  background-color: #606060;
+}
+
+.qm {
+  color: tomato;
+  font-size: 0.9rem;
+  margin: 0 5px;
+}
+
+.nav-bar {
+  width: 100%;
+  background-color: black;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.log-out {
+  align-self: center;
+  padding: 1%;
+}
+.header-nav {
+  align-self: center;
+  margin: 5px 0px 5px 20px;
+}
+.header-nav > h1 {
+  color: white;
+}
+.user-label {
+  margin: 0 10%;
+  text-align: start;
+}
+.logout-button {
+  background-color: #404040;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.logout-button:hover {
+  background-color: #707070;
+}
+
+@media (width < 420px) {
+  .nav-bar {
+    width: 100%;
+    background-color: black;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .log-out {
+    align-self: end;
+  }
+  .header-nav {
+    align-self: center;
+    margin: 0;
+  }
+  .header-nav > h1 {
+    color: white;
+    font-size: x-large;
+  }
+
+  .logout-button {
+    background-color: #404040;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 8x;
+    font-weight: bold;
+  }
 }

@@ -3,6 +3,7 @@ from rest_framework import serializers
 from .models import Note
 #ORM object relational mapping
 #takes python object --> json data and vice/versa
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User #rep a django built user
@@ -13,11 +14,15 @@ class UserSerializer(serializers.ModelSerializer):
         print(validated_data)
         user = User.objects.create_user(**validated_data)
         return user
+    
+
+
 
 class NoteSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Note
-        fields = ["id", "title", "content", "created_at", "author"]
-        extra_kwargs = {"author": {"read_only": True}}
+        fields = ["id", "title", "content", "created_at", "author_id", "author_name"]
+        extra_kwargs = {"author_id": {"read_only": True}, "author_name": {"read_only": True}}
 
 

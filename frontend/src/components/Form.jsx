@@ -15,7 +15,7 @@ function Form(props) {
   const name = props.method === "login" ? "Login" : "Register";
 
   const handleClick = (e) => {
-    navigate("/register");
+    props.method === "register" ? navigate("/login") : navigate("/register");
     setReg(false);
   };
 
@@ -25,22 +25,27 @@ function Form(props) {
 
     try {
       //send user/pass to api
+      api.post("/api/notes/", { username });
       const res = await api.post(props.route, { username, password });
-
       if (props.method === "login") {
         setReg(true);
         //gets access token if logins succesful
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
         navigate("/");
+
         //to home page
       } else {
         //if register was method, send back to login to get tokens
-        console.log(res.status);
         navigate("/login");
       }
     } catch (error) {
-      alert(error);
+      //add more error catches
+      if (error.response.status === 400) {
+        alert("user already exists!");
+      } else {
+        alert("error status: " + error.response.status);
+      }
     } finally {
       setLoading(false);
     }
@@ -76,7 +81,9 @@ function Form(props) {
           Register
         </button>
       ) : (
-        ""
+        <button className="form-button" onClick={handleClick}>
+          Login
+        </button>
       )}
     </form>
   );

@@ -7,14 +7,25 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const [notes, setNotes] = useState([]);
   const [content, setContent] = useState("");
+  const [contentEmpty, setContentEmpty] = useState(false);
+  const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
-  const username = "";
+
   const navigate = useNavigate();
-  //useEffect runs on initial render
-  //and on value change of 2nd argument(dependency)
+
   useEffect(() => {
     getNotes();
+    fetchUser();
   }, []);
+
+  const fetchUser = () => {
+    api
+      .get("/api/current_user/")
+      .then((res) => res.data)
+      .then((data) => {
+        setAuthor(data.username);
+      });
+  };
 
   //.then is like await but contains an error catch
   const getNotes = () => {
@@ -23,9 +34,8 @@ function Home() {
       .then((res) => res.data)
       .then((data) => {
         setNotes(data);
-        console.log(res);
-        username = res.username;
       })
+
       .catch((err) => err);
   };
 
@@ -34,7 +44,6 @@ function Home() {
       .delete(`/api/notes/delete/${id}/`)
       .then((res) => {
         if (res.status === 204) {
-          //alert("note deleted");
         } else alert("failed to delete");
         getNotes();
       })
@@ -43,8 +52,20 @@ function Home() {
 
   const createNote = (e) => {
     e.preventDefault();
+
+    // Check if content is empty
+    if (!content.trim()) {
+      setContentEmpty(true);
+      return; // Prevent further execution
+    } else {
+      setContentEmpty(false); // Reset the error message if content is not empty
+    }
+
+    // Check if title is empty
+    const trimmedTitle = title.trim();
+    const finalTitle = trimmedTitle || "untitled";
     api
-      .post("/api/notes/", { content, title })
+      .post("/api/notes/", { content, title: finalTitle })
       .then((res) => {
         if (res.status === 201) {
           //alert("note created");
@@ -52,54 +73,77 @@ function Home() {
         getNotes();
       })
       .catch((err) => alert(err));
+    setContent("");
+    setTitle("");
+    //setAuthor("");
+  };
+
+  const handleClear = () => {
+    setContent("");
+    setTitle("");
   };
 
   return (
     <div>
-      <div>
-        <button
-          className="logout-button"
-          onClick={() => {
-            navigate("/logout");
-          }}
-        >
-          Logout
-        </button>
-      </div>
-      <div>
-        `<h2>${username}'s' notes:</h2>`
-        {notes.map((note) => (
-          <Note note={note} onDelete={deleteNote} key={note.id} />
-        ))}
+      <div className="nav-bar">
+        <div className="header-nav">
+          <h1>{author}'s quotr</h1>
+        </div>
+
+        <div className="log-out">
+          <button
+            className="logout-button"
+            onClick={() => {
+              navigate("/logout");
+            }}
+          >
+            Logout
+          </button>
+        </div>
       </div>
 
-      <h2>Create a Note</h2>
       <form onSubmit={createNote}>
-        <label htmlFor="title">Title</label>
+        <h2>quote of the day</h2>
+        <label htmlFor="title">name yr quote, if you want</label>
         <br />
         <input
           type="text"
           id="title"
           name="title"
-          required
-          onChange={(e) => setTitle(e.target.value)}
           value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
 
-        <label htmlFor="content">Content</label>
+        <label htmlFor="content">meat of the quote</label>
         <br />
+        {contentEmpty && <p className="qm">*quote meat is required</p>}
         <textarea
           type="text"
           id="Content"
           name="Content"
-          required
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
 
         <br />
-        <input type="submit" value="submit" />
+        <input type="submit" value="quote me" />
+        <input type="button" value={"actually don't"} onClick={handleClear} />
       </form>
+      <div className="user-label">
+        {notes.length > 0 ? <h2>{author}'s quotes</h2> : <h4>no quotes fr?</h4>}
+      </div>
+      <div className="note-list">
+        <div className="note">
+          {notes.map((note) => (
+            <Note
+              note={note}
+              onDelete={deleteNote}
+              key={note.id}
+              user={author}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
