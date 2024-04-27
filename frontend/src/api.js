@@ -3,7 +3,8 @@
 import axios from "axios";
 import { ACCESS_TOKEN } from "./constants";
 
-const apiUrl = "/choreo-apis/djangoreactlesson/backend/rest-api-be2/v1.0";
+const apiUrl =
+  "postgresql://postgres:UnegCyzsOeKaFYwhMnesOTdxtrfFKtBN@monorail.proxy.rlwy.net:41812/railway";
 
 const api = axios.create({
   //import anything stored in an enviroment variable
