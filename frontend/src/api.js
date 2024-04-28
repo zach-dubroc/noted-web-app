@@ -4,12 +4,10 @@ import axios from "axios";
 import { ACCESS_TOKEN } from "./constants";
 
 const apiUrl =
-  "postgresql://postgres:UnegCyzsOeKaFYwhMnesOTdxtrfFKtBN@monorail.proxy.rlwy.net:41812/railway";
+  "postgresql://postgres:UnegCyzsOeKaFYwhMnesOTdxtrfFKtBN@monorail.proxy.rlwy.net:41812/railwaycd";
 
 const api = axios.create({
   //import anything stored in an enviroment variable
-
-  //choreo db
   baseURL: apiUrl,
 
   //local
