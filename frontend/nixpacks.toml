@@ -1,20 +1,17 @@
 # https://nixpacks.com/docs/configuration/file
 
+providers = ['node']
+
 # set up some variables to minimize annoyance
 [variables]
     NPM_CONFIG_UPDATE_NOTIFIER = 'false' # the update notification is relatively useless in a production environment
-    NPM_CONFIG_FUND = 'false' # the fund notification is is also pretty useless in a production environment
-    CADDY_VERSION = '2.7.4' # specify the caddy version to use here, without a 'v' prefix. https://github.com/caddyserver/caddy/releases
-    CI = 'false' # setting this in the web ui didn't work, so we will try setting it in here?
+    NPM_CONFIG_FUND = 'false' # the fund notification is also pretty useless in a production environment
 
-# download and untar caddy
+# install caddy
 [phases.caddy]
+    nixpkgsArchive = '727db88c063586d2f912af26dc3ce19d6f31af05' # caddy v2.7.6 - https://github.com/NixOS/nixpkgs/commit/727db88c063586d2f912af26dc3ce19d6f31af05
     dependsOn = ['setup'] # make sure this phase runs after the default 'setup' phase
-    cmds = [
-        'curl -fsSLo caddy.tar.gz "https://github.com/caddyserver/caddy/releases/download/v${CADDY_VERSION}/caddy_${CADDY_VERSION}_linux_amd64.tar.gz"', # download the caddy release specified by 'CADDY_VERSION' from GitHub
-        'tar -zxvf caddy.tar.gz caddy', # only extract 'caddy' from the tarball
-        'chmod +x caddy' # enable file execution for caddy, needed to execute downloaded files
-    ]
+    nixPkgs = ['caddy'] # install caddy
 
 # format the Caddyfile with fmt
 [phases.fmt]
@@ -23,6 +20,4 @@
 
 # copy caddy and build artifacts to a new image and start the caddy web server
 [start]
-    runImage = 'ubuntu:20.04' # use a new ubuntu image to run the caddy server in
-    onlyIncludeFiles = ['caddy', 'Caddyfile', 'build'] # copy only the needed files and folders into the new image (react-scripts builds to a 'build' folder)
-    cmd = './caddy run --config Caddyfile --adapter caddyfile 2>&1' # start caddy using the Caddyfile config and caddyfile adapter
+    cmd = 'caddy run --config Caddyfile --adapter caddyfile 2>&1' # start caddy using the Caddyfile config and caddyfile adapter
