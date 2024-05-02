@@ -4,7 +4,7 @@ import axios from "axios";
 import { ACCESS_TOKEN } from "./constants";
 
 const apiUrl =
-  "postgresql://postgres:UnegCyzsOeKaFYwhMnesOTdxtrfFKtBN@monorail.proxy.rlwy.net:41812/railwaycd";
+  "postgresql://postgres:ttNgMyTAouerThVzmzpTWGiCDOcRNVYy@postgres.railway.internal:5432/railway";
 
 const api = axios.create({
   //import anything stored in an enviroment variable
