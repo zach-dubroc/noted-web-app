@@ -1,16 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 #seperate the user, or use a condition to render only the user name if no notes are created
 
 class Note(models.Model):
     #defines python object to serialize to JSON
-
     title = models.CharField(max_length=100, null=True, blank=True)
     content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True) #add current time for each note
-    #CASCADE on_delete will remove all related data, here if a user is deleted, that users notes are also deleted
+    created_at = models.DateTimeField(auto_now_add=True)
+    #CASCADE on_delete if relation is one to many, so if a user is deleted, their notes are also deleted
     author_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notes") #links note to it's author
     author_name = models.CharField(max_length=150, blank=True)
     #return title as string
