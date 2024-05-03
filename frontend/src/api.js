@@ -5,11 +5,11 @@ import { ACCESS_TOKEN } from "./constants";
 
 const apiUrl =
   //protocol missing?
-  "https://postgresql://postgres:ttNgMyTAouerThVzmzpTWGiCDOcRNVYy@monorail.proxy.rlwy.net:50695/railway";
+  "postgresql://postgres:ttNgMyTAouerThVzmzpTWGiCDOcRNVYy@monorail.proxy.rlwy.net:50695/railway";
 
 const api = axios.create({
   //import anything stored in an enviroment variable
-  baseURL: apiUrl,
+  baseURL: apiUrl ? apiUrl : import.meta.env.VITE_API_URL,
 
   //baseURL: import.meta.env.VITE_API_URL,
 });
