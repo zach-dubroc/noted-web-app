@@ -15,7 +15,7 @@
         'chmod +x caddy' # enable file execution for caddy, needed to execute downloaded files
     ]
 
-# format the Caddyfile with fmt
+# frmat the Caddyfile with fmt
 [phases.fmt]
     dependsOn = ['caddy'] # make sure this phase runs after the 'caddy' phase so that we know we have caddy downloaded
     cmds = ['caddy fmt --overwrite Caddyfile'] # format the Caddyfile to fix any formatting inconsistencies
