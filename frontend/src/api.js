@@ -10,7 +10,6 @@ const api = axios.create({
   //import anything stored in an enviroment variable
   baseURL: apiUrl,
 
-  //local
   //baseURL: import.meta.env.VITE_API_URL,
 });
 
