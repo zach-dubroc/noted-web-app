@@ -9,7 +9,7 @@ const apiUrl =
 
 const api = axios.create({
   //import anything stored in an enviroment variable
-  baseURL: apiUrl ? apiUrl : import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
 
   //baseURL: import.meta.env.VITE_API_URL,
 });
