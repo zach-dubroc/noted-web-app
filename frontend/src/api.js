@@ -3,13 +3,13 @@
 import axios from "axios";
 import { ACCESS_TOKEN } from "./constants";
 
-const apiUrl =
-  //protocol missing?
-  "postgresql://postgres:ttNgMyTAouerThVzmzpTWGiCDOcRNVYy@monorail.proxy.rlwy.net:50695/railway";
+const apiUrl = "noted-web-app-db-production-f38d.up.railway.app";
+//protocol missing?
+("postgresql://postgres:ttNgMyTAouerThVzmzpTWGiCDOcRNVYy@monorail.proxy.rlwy.net:50695/railway");
 
 const api = axios.create({
   //import anything stored in an enviroment variable
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: apiUrl,
 
   //baseURL: import.meta.env.VITE_API_URL,
 });
