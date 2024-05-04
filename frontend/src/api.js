@@ -3,7 +3,8 @@
 import axios from "axios";
 import { ACCESS_TOKEN } from "./constants";
 
-const apiUrl = "noted-web-app-db.railway.internal";
+//url is incorrect, must come from backend service?
+const apiUrl = "noted-web-app-db-production.up.railway.app";
 //protocol missing?
 ("postgresql://postgres:ttNgMyTAouerThVzmzpTWGiCDOcRNVYy@monorail.proxy.rlwy.net:50695/railway");
 
