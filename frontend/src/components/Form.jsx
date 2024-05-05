@@ -24,7 +24,7 @@ function Form(props) {
     e.preventDefault();
 
     try {
-      //send user/pass to api
+      //send to api
       api.post("/api/notes/", { username });
       const res = await api.post(props.route, { username, password });
       if (props.method === "login") {
@@ -41,11 +41,6 @@ function Form(props) {
       }
     } catch (error) {
       //add more error catches
-      if (error.response.status === 400) {
-        alert("user already exists!");
-      } else {
-        alert("error status: " + error.response.status);
-      }
     } finally {
       setLoading(false);
     }
