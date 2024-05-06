@@ -10,9 +10,8 @@ const apiUrl = "noted-web-app-db.railway.internal";
 
 const api = axios.create({
   //import anything stored in an enviroment variable
-  //baseURL: apiUrl,
-
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: apiUrl,
+  //baseURL: import.meta.env.VITE_API_URL,
 });
 
 //checks local storage for access token
