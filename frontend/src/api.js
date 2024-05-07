@@ -3,10 +3,8 @@
 import axios from "axios";
 import { ACCESS_TOKEN } from "./constants";
 
-//url is incorrect, must come from backend service?
+//url incorrect, try public next
 const apiUrl = "noted-web-app-db.railway.internal/api";
-//protocol missing?
-//("postgresql://postgres:ttNgMyTAouerThVzmzpTWGiCDOcRNVYy@monorail.proxy.rlwy.net:50695/railway");
 
 const api = axios.create({
   //import anything stored in an enviroment variable
