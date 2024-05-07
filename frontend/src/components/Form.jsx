@@ -26,9 +26,10 @@ function Form(props) {
     try {
       //send to api
       //console.log(`${props.route} / ${username} / ${password}`);
-      const res = await api.post(props.route, { username, password });
+
       if (props.method === "login") {
         setReg(true);
+        const res = await api.post(props.route, { username, password });
         //gets access token if logins succesful
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
