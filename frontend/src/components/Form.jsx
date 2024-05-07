@@ -25,7 +25,7 @@ function Form(props) {
 
     try {
       //send to api
-      api.post("/api/notes/", { username });
+      //console.log(`${props.route} / ${username} / ${password}`);
       const res = await api.post(props.route, { username, password });
       if (props.method === "login") {
         setReg(true);
