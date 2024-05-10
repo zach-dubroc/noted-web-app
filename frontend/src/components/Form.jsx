@@ -9,14 +9,11 @@ function Form(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [reg, setReg] = useState(true);
-
   const navigate = useNavigate();
   const name = props.method === "login" ? "Login" : "Register";
 
   const handleClick = (e) => {
     props.method === "register" ? navigate("/login") : navigate("/register");
-    setReg(false);
   };
 
   const handleSubmit = async (e) => {
@@ -24,12 +21,10 @@ function Form(props) {
     e.preventDefault();
 
     try {
-      //send to api
-      //console.log(`${props.route} / ${username} / ${password}`);
-
+      //send to api/token
+      const res = await api.post(props.route, { username, password });
       if (props.method === "login") {
         setReg(true);
-        const res = await api.post(props.route, { username, password });
         //gets access token if logins succesful
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
