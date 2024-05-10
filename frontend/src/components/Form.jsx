@@ -23,14 +23,13 @@ function Form(props) {
     try {
       //send to api/token
       //method sets to post on register?
-      const res = await api.post(props.method, { username, password });
       if (props.method === "login") {
+        const res = await api.post(props.method, { username, password });
         setReg(true);
         //gets access token if logins succesful
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
         navigate("/");
-
         //to home page
       } else {
         //if register was method, send back to login to get tokens
