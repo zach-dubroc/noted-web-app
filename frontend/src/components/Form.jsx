@@ -22,7 +22,8 @@ function Form(props) {
 
     try {
       //send to api/token
-      const res = await api.post(props.route, { username, password });
+      //method sets to post on register?
+      const res = await api.post(props.method, { username, password });
       if (props.method === "login") {
         setReg(true);
         //gets access token if logins succesful
