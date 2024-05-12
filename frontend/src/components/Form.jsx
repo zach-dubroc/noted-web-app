@@ -12,32 +12,27 @@ function Form(props) {
   const navigate = useNavigate();
   const name = props.method === "login" ? "Login" : "Register";
 
-  const handleClick = (e) => {
-    props.method === "register" ? navigate("/login") : navigate("/register");
-  };
-
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
 
     try {
-      //send to api/token
-      //method sets to post on register?
+      // Send the request to the appropriate endpoint based on props.method
       const res = await api.post(props.method, { username, password });
+
+      // Check if the method is login
       if (props.method === "login") {
-        setReg(true);
-        //gets access token if logins succesful
+        // Set access and refresh tokens
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+        // Navigate to the home page
         navigate("/");
-
-        //to home page
       } else {
-        //if register was method, send back to login to get tokens
+        // If the method is register, navigate to the login page
         navigate("/login");
       }
     } catch (error) {
-      //add more error catches
+      // Handle errors
     } finally {
       setLoading(false);
     }
@@ -68,15 +63,7 @@ function Form(props) {
         {name}
       </button>
 
-      {props.method === "login" ? (
-        <button className="form-button" onClick={handleClick}>
-          Register
-        </button>
-      ) : (
-        <button className="form-button" onClick={handleClick}>
-          Login
-        </button>
-      )}
+      {/* Remove conditional rendering of Register/Login buttons */}
     </form>
   );
 }
