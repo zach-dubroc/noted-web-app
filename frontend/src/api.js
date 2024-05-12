@@ -6,7 +6,7 @@ import { ACCESS_TOKEN } from "./constants";
 //url is incorrect
 //protocol missing?
 //("postgresql://postgres:ttNgMyTAouerThVzmzpTWGiCDOcRNVYy@monorail.proxy.rlwy.net:50695/railway");
-
+const apiUrl = "noted-web-app-db.railway.internal";
 const api = axios.create({
   //import anything stored in an enviroment variable
   baseURL: apiUrl,
