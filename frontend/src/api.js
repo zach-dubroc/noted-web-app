@@ -4,7 +4,6 @@ import axios from "axios";
 import { ACCESS_TOKEN } from "./constants";
 
 //url is incorrect
-const apiUrl = "noted-web-app-db.railway.internal";
 //protocol missing?
 //("postgresql://postgres:ttNgMyTAouerThVzmzpTWGiCDOcRNVYy@monorail.proxy.rlwy.net:50695/railway");
 
