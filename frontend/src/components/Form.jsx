@@ -5,12 +5,12 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import LoadingIndicator from "./LoadingIndicator";
 import "../styles/Form.css";
 
-function Form(props) {
+function Form({ route, method }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const name = props.method === "login" ? "Login" : "Register";
+  const name = method === "login" ? "Login" : "Register";
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -19,8 +19,8 @@ function Form(props) {
     try {
       // Send the request to the appropriate endpoint based on props.method
       // Check if the method is login
-      const res = await api.post(props.route, { username, password });
-      if (props.method === "login") {
+      const res = await api.post(route, { username, password });
+      if (method === "login") {
         // Set access and refresh tokens
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
@@ -31,7 +31,7 @@ function Form(props) {
         navigate("/login");
       }
     } catch (error) {
-      // Handle errors
+      alert(error);
     } finally {
       setLoading(false);
     }
