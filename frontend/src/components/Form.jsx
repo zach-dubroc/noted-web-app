@@ -19,8 +19,8 @@ function Form(props) {
     try {
       // Send the request to the appropriate endpoint based on props.method
       // Check if the method is login
+      const res = await api.post(props.method, { username, password });
       if (props.method === "login") {
-        const res = await api.post(props.method, { username, password });
         // Set access and refresh tokens
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
