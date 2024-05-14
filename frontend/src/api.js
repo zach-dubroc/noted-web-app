@@ -3,7 +3,7 @@
 import axios from "axios";
 import { ACCESS_TOKEN } from "./constants";
 
-const apiUrl = "http://noted-web-app-db.railway.internal";
+const apiUrl = "https://noted-web-app-db.railway.internal";
 const api = axios.create({
   baseURL: apiUrl,
   //baseURL: import.meta.env.VITE_API_URL,
