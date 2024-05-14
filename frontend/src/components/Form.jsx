@@ -61,8 +61,6 @@ function Form(props) {
       <button className="form-button" type="submit">
         {name}
       </button>
-
-      {/* Remove conditional rendering of Register/Login buttons */}
     </form>
   );
 }
