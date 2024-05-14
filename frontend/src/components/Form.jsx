@@ -17,8 +17,6 @@ function Form({ route, method }) {
     e.preventDefault();
 
     try {
-      // Send the request to the appropriate endpoint based on props.method
-      // Check if the method is login
       const res = await api.post(route, { username, password });
       if (method === "login") {
         // Set access and refresh tokens
