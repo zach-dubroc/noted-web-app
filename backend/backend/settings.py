@@ -159,12 +159,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
-# CORS_ALLOWED_ORIGINS = [
-#     "https://noted-web-app-react-production.up.railway.app"
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "https://noted-web-app-react-production.up.railway.app"
+]
 
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
 #SECURE_SSL_REDIRECT = True
 #set after deploy
