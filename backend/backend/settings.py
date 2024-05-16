@@ -26,12 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-#ALLOWED_HOSTS = ["noted-web-app-db-production.up.railway.app"]
 ALLOWED_HOSTS = ["*"]
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
@@ -61,7 +60,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -69,6 +67,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "backend.urls"
@@ -96,7 +95,6 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # DATABASES = {
-
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql",
 #         "NAME": os.getenv("DB_NAME"),
@@ -104,7 +102,6 @@ WSGI_APPLICATION = "backend.wsgi.application"
 #         "PASSWORD": os.getenv("DB_PWD"),
 #         "HOST": os.getenv("DB_HOST"),
 #         "PORT": os.getenv("DB_PORT"),
-
 #     }
 # }
 
@@ -112,7 +109,6 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
-
     }
 }
 
@@ -146,7 +142,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -160,12 +155,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
 
-# CORS_ALLOWED_ORIGINS = [
-#     "https://noted-web-app-react-production.up.railway.app"
-# ]
 
-
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
-#SECURE_SSL_REDIRECT = True
-#set after deploy
