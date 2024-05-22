@@ -1,7 +1,8 @@
 import React from "react";
 import "../styles/Note.css";
-function Note({ note, onDelete, user }) {
+function Note({ note, onDelete, user, noteCount }) {
   const formattedDate = new Date(note.created_at).toLocaleDateString("en-us");
+  console.log(note);
 
   return (
     <div className="container">

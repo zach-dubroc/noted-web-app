@@ -1,0 +1,25 @@
+//FRONTEND
+
+-deploy
+
+-banner on form page
+
+-profile picture
+
+-feed of all quotes
+
+-follow/unfollow users
+
+-feed of followed users quotes
+
+
+//BACKEND
+
+-deploy
+
+-how to media storage in database?
+
+-user model fields for following/unfollowing
+
+-using the following field to create feed of 
+followed user notes

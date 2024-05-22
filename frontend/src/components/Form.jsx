@@ -35,6 +35,10 @@ function Form({ route, method }) {
     }
   };
 
+  const handleNav = (path) => {
+    navigate(path);
+  };
+
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <h1>{name}</h1>
@@ -56,9 +60,20 @@ function Form({ route, method }) {
         placeholder="password"
       />
       {loading && <LoadingIndicator />}
+
       <button className="form-button" type="submit">
         {name}
       </button>
+
+      {method === "login" ? (
+        <button className="form-button" onClick={() => handleNav("/register")}>
+          register
+        </button>
+      ) : (
+        <button className="form-button" onClick={() => handleNav("/login")}>
+          login
+        </button>
+      )}
     </form>
   );
 }

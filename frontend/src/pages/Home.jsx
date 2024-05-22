@@ -130,19 +130,24 @@ function Home() {
         <input type="button" value={"actually don't"} onClick={handleClear} />
       </form>
       <div className="user-label">
-        {notes.length > 0 ? <h2>{author}'s quotes</h2> : <h4>no quotes fr?</h4>}
-      </div>
-      <div className="note-list">
-        <div className="note">
-          {notes.map((note) => (
-            <Note
-              note={note}
-              onDelete={deleteNote}
-              key={note.id}
-              user={author}
-            />
-          ))}
-        </div>
+        {notes.length > 0 ? (
+          <div className="note-list">
+            <h2>{author}'s quotes</h2>
+            <div className="note">
+              {notes.map((note) => (
+                <Note
+                  note={note}
+                  onDelete={deleteNote}
+                  key={note.id}
+                  user={author}
+                  noteCount={notes.length}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <h4>no quotes fr?</h4>
+        )}
       </div>
     </div>
   );
