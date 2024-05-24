@@ -14,7 +14,7 @@ services:
 
   web:
     build: .
-    command: gunicorn --bind 0.0.0.0:8000 backend.wsgi:application
+    command: gunicorn backend.wsgi
     volumes:
       - .:/app
     ports:
