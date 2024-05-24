@@ -32,7 +32,8 @@ ENVIROMENT = os.getenv("ENVIROMENT", default="production")
 
 DEBUG = os.getenv('ENVIRONMENT') == 'development'
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["protective-clarity-production.up.railway.app", "localhost", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["http://protective-clarity-production.up.railway.app"]
 
 INTERNAL_IPS = {
     "127.0.0.1",
