@@ -67,11 +67,11 @@ function Form({ route, method }) {
 
       {method === "login" ? (
         <button className="form-button" onClick={() => handleNav("/register")}>
-          register
+          Register
         </button>
       ) : (
         <button className="form-button" onClick={() => handleNav("/login")}>
-          login
+          Login
         </button>
       )}
     </form>
