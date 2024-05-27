@@ -19,6 +19,12 @@ function RegisterAndLogout() {
   return <Register />;
 }
 
+// redirects to Django admin page
+function AdminRedirect() {
+  window.location.href = "/patron/";
+  return null;
+}
+
 function App() {
   //set routes
   return (
@@ -35,6 +41,7 @@ function App() {
         <Route path="/login/" element={<Login />} />
         <Route path="/logout/" element={<Logout />} />
         <Route path="/register/" element={<RegisterAndLogout />} />
+        <Route path="/patron/" element={<AdminRedirect />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
