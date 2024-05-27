@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 #urls
 urlpatterns = [
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('patron/', admin.site.urls), 
     path("api/user/register/", CreateUserView.as_view(), name="register"), #links register view
     path("api/token/", TokenObtainPairView.as_view(), name="get_token"), #links token obtain view

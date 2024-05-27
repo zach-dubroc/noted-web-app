@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "api",
     "rest_framework",
     "corsheaders",
+    "admin_honeypot",
 ]
 
 MIDDLEWARE = [
@@ -174,4 +175,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
 
+ACCOUNT_USERNAME_BLACKLIST = os.getenv("USER_BLACKLIST")
 
