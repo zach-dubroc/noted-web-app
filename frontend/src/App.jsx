@@ -18,13 +18,7 @@ function RegisterAndLogout() {
   localStorage.clear();
   return <Register />;
 }
-
-// redirects to Django admin page
-function AdminRedirect() {
-  window.location.href = "/patron/";
-  return null;
-}
-
+//how to redirect to my admin page
 function App() {
   //set routes
   return (
@@ -41,7 +35,6 @@ function App() {
         <Route path="/login/" element={<Login />} />
         <Route path="/logout/" element={<Logout />} />
         <Route path="/register/" element={<RegisterAndLogout />} />
-        <Route path="/patron/" element={<AdminRedirect />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
