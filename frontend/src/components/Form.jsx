@@ -54,6 +54,7 @@ function Form({ route, method }) {
         type="password"
         className="form-input"
         value={password}
+        autoComplete="current-password"
         onChange={(e) => {
           setPassword(e.target.value);
         }}
