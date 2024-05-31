@@ -4,7 +4,7 @@
 
 -banner on form page
 
--profile picture
+-profile picture (backend media storage first)
 
 -feed of all quotes
 
@@ -14,6 +14,8 @@
 
 
 //BACKEND
+
+-user registration (change to email verifcation)
 
 -deploy
 

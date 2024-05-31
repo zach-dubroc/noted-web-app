@@ -6,7 +6,6 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Form from "./components/Form";
 
 //clears tokens on logout
 function Logout() {

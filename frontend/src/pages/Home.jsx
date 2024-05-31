@@ -68,14 +68,12 @@ function Home() {
       .post("/api/notes/", { content, title: finalTitle })
       .then((res) => {
         if (res.status === 201) {
-          //alert("note created");
         } else alert("failed");
         getNotes();
       })
       .catch((err) => alert(err));
     setContent("");
     setTitle("");
-    //setAuthor("");
   };
 
   const handleClear = () => {
