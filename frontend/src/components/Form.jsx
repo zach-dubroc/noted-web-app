@@ -6,6 +6,7 @@ import LoadingIndicator from "./LoadingIndicator";
 import "../styles/Form.css";
 
 function Form({ route, method }) {
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -39,9 +40,53 @@ function Form({ route, method }) {
     navigate(path);
   };
 
-  return (
+  return method === "login" ? (
     <form className="form-container" onSubmit={handleSubmit}>
       <h1>{name}</h1>
+      <input
+        type="text"
+        className="form-input"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="username"
+      />
+
+      <input
+        type="password"
+        className="form-input"
+        value={password}
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
+        placeholder="password"
+      />
+      {loading && <LoadingIndicator />}
+
+      <button className="form-button" type="submit">
+        {name}
+      </button>
+
+      {method === "login" ? (
+        <button className="form-button" onClick={() => handleNav("/register")}>
+          Register
+        </button>
+      ) : (
+        <button className="form-button" onClick={() => handleNav("/login")}>
+          Login
+        </button>
+      )}
+    </form>
+  ) : (
+    <form className="form-container" onSubmit={handleSubmit}>
+      <h1>Create Account</h1>
+      <input
+        type="text"
+        className="form-input"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="email"
+      />
+
       <input
         type="text"
         className="form-input"
