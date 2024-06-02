@@ -1,4 +1,3 @@
-//interceptor for request to add correct headers
 //uses axios to send network requests
 import axios from "axios";
 import { ACCESS_TOKEN } from "./constants";
