@@ -42,9 +42,9 @@ class NoteDelete(generics.DestroyAPIView):
 
 #generic django new user page
 class CreateUserView(generics.CreateAPIView):
-    queryset = User.objects.all() #checks list of user so no duplicates
-    serializer_class = UserSerializer #what data to accept to create user
-    permission_classes = [AllowAny] #allows anyone to create user
+    queryset = User.objects.all() 
+    serializer_class = UserSerializer 
+    permission_classes = [AllowAny] 
 
 
     
@@ -56,3 +56,10 @@ class GetUser(generics.RetrieveAPIView):
         def get_object(self):
             return self.request.user
         
+
+class GetUserEmail(generics.RetrieveAPIView):
+        serializer_class = UserSerializer
+        permission_classes = [IsAuthenticated]
+
+        def get_object(self):
+            return self.request.user.get_email_field_name()

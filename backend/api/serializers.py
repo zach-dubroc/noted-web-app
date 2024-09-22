@@ -7,7 +7,7 @@ from .models import Note
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User #rep a django built user
-        fields = ["id", "username", "password"] #fields to serialize
+        fields = ["id", "username", "password", "email"] #fields to serialize
         extra_kwargs = {"password": {"write_only": True}} #accepts password but doesn't return it
         #if serialized data is valid, will be passed and and we can create user
     def create(self, validated_data):

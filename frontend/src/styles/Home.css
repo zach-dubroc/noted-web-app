@@ -109,6 +109,9 @@ form input[type="button"]:hover {
 .header-nav > h1 {
   color: white;
 }
+.header-nav > p {
+  color: white;
+}
 .user-label {
   margin: 0 10%;
   text-align: start;

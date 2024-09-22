@@ -9,6 +9,7 @@ function Home() {
   const [content, setContent] = useState("");
   const [contentEmpty, setContentEmpty] = useState(false);
   const [author, setAuthor] = useState("");
+  const [email, setEmail] = useState("");
   const [title, setTitle] = useState("");
 
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ function Home() {
       .then((res) => res.data)
       .then((data) => {
         setAuthor(data.username);
+        setEmail(data.email);
       });
   };
 
@@ -86,6 +88,7 @@ function Home() {
       <div className="nav-bar">
         <div className="header-nav">
           <h1>{author}'s quotr</h1>
+          <p>reach @ {email}</p>
         </div>
 
         <div className="log-out">

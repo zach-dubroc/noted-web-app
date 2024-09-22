@@ -18,7 +18,13 @@ function Form({ route, method }) {
     e.preventDefault();
 
     try {
-      const res = await api.post(route, { username, password });
+      const data = {
+        email, // Send the email if it's available (used in registration)
+        username, // Send the username
+        password, // Send the password
+      };
+
+      const res = await api.post(route, data);
       if (method === "login") {
         // Set access and refresh tokens
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
@@ -39,7 +45,8 @@ function Form({ route, method }) {
   const handleNav = (path) => {
     navigate(path);
   };
-
+  // could seperate to more components but fn just ternary to return
+  // either login/register pages
   return method === "login" ? (
     <form className="form-container" onSubmit={handleSubmit}>
       <h1>{name}</h1>
@@ -48,7 +55,7 @@ function Form({ route, method }) {
         className="form-input"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        placeholder="username"
+        placeholder="email/username"
       />
 
       <input
@@ -104,19 +111,20 @@ function Form({ route, method }) {
         }}
         placeholder="password"
       />
-      {loading && <LoadingIndicator />}
 
+      {loading && <LoadingIndicator />}
+      {/* top btn login/register */}
       <button className="form-button" type="submit">
         {name}
       </button>
-
+      {/* bottom btn alternates methods */}
       {method === "login" ? (
         <button className="form-button" onClick={() => handleNav("/register")}>
           Register
         </button>
       ) : (
         <button className="form-button" onClick={() => handleNav("/login")}>
-          Login
+          Back to Login
         </button>
       )}
     </form>

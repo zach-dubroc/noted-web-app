@@ -4,8 +4,8 @@ import { ACCESS_TOKEN } from "./constants";
 
 const apiUrl = "https://protective-clarity-production.up.railway.app";
 const api = axios.create({
-  baseURL: apiUrl,
-  //baseURL: import.meta.env.VITE_API_URL,
+  //baseURL: apiUrl,
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 //checks local storage for access token
